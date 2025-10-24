@@ -1,77 +1,100 @@
-"use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Projects from "./Projects";
-import Experience from "./Experience";
-import Tools from "./Tools";
+'use client'
 
-const tabs = ["Projects", "Experience", "Tools"];
+import { motion, AnimatePresence } from 'framer-motion'
+import Container from './ui/Container'
+import Section from './ui/Section'
+import { useState } from 'react'
+import Projects from './Projects'
+import Experience from './Experience'
+import Tools from './Tools'
+
+
+type TabType = 'projects' | 'experience' | 'tools'
 
 export default function Tabs() {
-  const [active, setActive] = useState("Projects");
+  const [activeTab, setActiveTab] = useState<TabType>('projects')
+
+  const tabs = [
+    { id: 'projects' as TabType, label: 'Projects', count: 5 },
+    { id: 'experience' as TabType, label: 'Experience', count: 4 },
+    { id: 'tools' as TabType, label: 'Tools', count: 12 },
+  ]
+
+  const tabContent = {
+    projects: <Projects />,
+    experience: <Experience/>,
+    tools: <Tools />,
+  }
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto px-8 md:px-16 py-8">
-      {/* Tab Navigation */}
-      <div className="flex items-center gap-0 mb-10 text-[13px]">
-        {tabs.map((tab, idx) => {
-          const isActive = active === tab;
-          return (
-            <div key={tab} className="flex items-center">
-              <button
-                onClick={() => setActive(tab)}
-                className={`transition-colors ${
-                  isActive
-                    ? "text-white"
-                    : "text-zinc-500 hover:text-zinc-300"
-                }`}
-              >
-                {tab}
-              </button>
-              {idx < tabs.length - 1 && (
-                <span className="text-zinc-700 mx-2">|</span>
-              )}
-            </div>
-          );
-        })}
-      </div>
+    <Section id="work" className="min-h-screen">
+      <Container>
+        {/* Tab Navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+              Work & Projects
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Explore my projects, professional experience, and the technologies I work with
+            </p>
+          </div>
 
-      {/* Tab Content */}
-      <AnimatePresence mode="wait">
-        {active === "Projects" && (
+          {/* Tab Buttons */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            {tabs.map((tab) => (
+              <motion.button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-6 py-3 rounded-lg font-medium transition-all ${
+                  activeTab === tab.id
+                    ? 'text-gray-900 dark:text-gray-100'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {activeTab === tab.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-lg"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span>{tab.label}</span>
+                  <span className={`px-2 py-1 text-xs rounded-full ${
+                    activeTab === tab.id
+                      ? 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
+                  }`}>
+                    {tab.count}
+                  </span>
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Tab Content */}
+        <AnimatePresence mode="wait">
           <motion.div
-            key="projects"
-            initial={{ opacity: 0, y: 10 }}
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
           >
-            <Projects />
+            {tabContent[activeTab]}
           </motion.div>
-        )}
-        {active === "Experience" && (
-          <motion.div
-            key="experience"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Experience />
-          </motion.div>
-        )}
-        {active === "Tools" && (
-          <motion.div
-            key="tools"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Tools />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
+        </AnimatePresence>
+      </Container>
+    </Section>
+  )
 }

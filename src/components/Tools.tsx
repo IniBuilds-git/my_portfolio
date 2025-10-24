@@ -1,56 +1,42 @@
-"use client";
-import { motion } from "framer-motion";
+"use client"
+
+import { Icon } from "@iconify/react"
+import Container from "./ui/Container"
+import Section from "./ui/Section"
+import AnimatedSection from "./ui/AnimatedSection"
+import { tools as TOOL_GROUPS } from "@/data/tools" 
 
 export default function Tools() {
-  const categories = [
-    {
-      title: "Languages",
-      items: ["TypeScript", "Python", "JavaScript", "PHP", "SQL"],
-    },
-    {
-      title: "Frameworks & Libraries",
-      items: ["Next.js", "NestJS", "Laravel", "React", "LangChain"],
-    },
-    {
-      title: "Cloud & Infrastructure",
-      items: ["AWS", "Vercel", "Docker", "NGINX", "GitHub Actions"],
-    },
-    {
-      title: "AI / ML",
-      items: ["RAG", "FAISS", "OpenAI", "LangGraph", "Vector DBs"],
-    },
-    {
-      title: "Databases",
-      items: ["PostgreSQL", "MySQL", "Redis", "MongoDB"],
-    },
-    {
-      title: "Tools & Others",
-      items: ["Git", "Linux", "CI/CD", "Microservices", "REST APIs"],
-    },
-  ];
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-      {categories.map((cat, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: index * 0.05 }}
-          className="bg-[#0d0d0d] border border-zinc-800/60 rounded-xl p-6 hover:border-zinc-700/60 transition-all"
-        >
-          <h3 className="text-[15px] font-medium text-white mb-4">{cat.title}</h3>
-          <ul className="space-y-2.5">
-            {cat.items.map((tool, i) => (
-              <li key={i} className="text-[13px] text-zinc-400 flex items-center gap-2.5">
-                <span className="text-zinc-600">▸</span>
-                {tool}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      ))}
-    </div>
-  );
+    <Section id="tools">
+      <Container>
+        <AnimatedSection>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 dark:text-gray-100">
+            Tools & Technologies
+          </h2>
+        </AnimatedSection>
+
+        <div className="space-y-16">
+          {TOOL_GROUPS.map((group, groupIndex) => (
+            <AnimatedSection key={group.category} delay={groupIndex * 0.1}>
+              <div className="mb-4">
+                <span className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                  {group.category}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-6">
+                {group.items.map(tool => (
+                  <div key={tool.name} className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+                    <Icon icon={tool.icon} width="24" />
+                    <span className="text-sm font-medium">{tool.name}</span>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )
 }

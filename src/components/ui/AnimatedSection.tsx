@@ -9,9 +9,13 @@ interface AnimatedSectionProps {
   delay?: number
 }
 
-export default function AnimatedSection({ children, className = '', delay = 0 }: AnimatedSectionProps) {
+export default function AnimatedSection({ 
+  children, 
+  className = '', 
+  delay = 0 
+}: AnimatedSectionProps) {
   return (
-    <motion.section
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
@@ -19,6 +23,6 @@ export default function AnimatedSection({ children, className = '', delay = 0 }:
       className={className}
     >
       {children}
-    </motion.section>
+    </motion.div>
   )
 }

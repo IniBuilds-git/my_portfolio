@@ -1,31 +1,41 @@
-"use client";
-import { motion } from "framer-motion";
+'use client'
+
+import { motion } from 'framer-motion'
+import Container from './ui/Container'
 
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
   
   return (
-    <footer className="w-full max-w-[1400px] mx-auto px-8 md:px-16 py-12 mt-16">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="flex items-center justify-between text-[12px] text-zinc-600"
-      >
-        <p>© {year} chizi.app</p>
-        
-        <div className="flex gap-6">
-          <a href="mailto:your@email.com" className="hover:text-zinc-400 transition-colors">
-            Email
-          </a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
-            GitHub
-          </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 transition-colors">
-            LinkedIn
-          </a>
-        </div>
-      </motion.div>
+    <footer className="py-12 border-t border-gray-200 dark:border-gray-800">
+      <Container>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center"
+        >
+          <div className="text-gray-600 dark:text-gray-400 mb-4 md:mb-0">
+            © {currentYear} inioluwa.com
+          </div>
+          <div className="flex space-x-6">
+            {['Email', 'GitHub', 'LinkedIn'].map((item, index) => (
+              <motion.a
+                key={item}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                href="#"
+                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
+              >
+                {item}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </Container>
     </footer>
-  );
+  )
 }

@@ -1,52 +1,45 @@
-import { Project } from "@/types/index";
+import { Project } from '@/types'
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "SuperNote",
+    title: "Coinlybus — Fintech Wallet Infrastructure",
     description:
-      "An AI-first study tool that converts YouTube, TikTok, PDFs, and voice into structured notes, quizzes, and flashcards.",
-    tags: ["Flutter", "React", "TypeScript", "Supabase"],
-    additionalTags: ["OpenRouter", "LangChain", "ElevenLabs"],
-    githubUrl: "#",
-    liveUrl: "#",
-    demoUrl: "#",
+      "Built a secure multi-wallet transaction system with real-time ledgering, automated reconciliation, and fault-tolerant payment processing deployed on AWS with PM2 and Docker. Designed the backend for scalability, monitoring, and continuous delivery.",
+    tech: ["NestJS", "Prisma", "PostgreSQL", "Redis", "AWS", "Docker"],
+    tags: ["API", "Cloud Infrastructure"],
+    status: "Active",
+    githubUrl: "",
   },
   {
     id: 2,
-    title: "Instalog",
+    title: "LaundryRoom — On-Demand Laundry SaaS Platform",
     description:
-      "A real-time logging, crash reporting, and AI debugging SDK built with mobile-native integrations; serving 10K+ sessions/week across platforms.",
-    tags: ["Rust", "Supabase", "Redis", "Kotlin", "Swift"],
-    additionalTags: ["Dart", "React Native"],
-    githubUrl: "#",
-    liveUrl: "#",
-    demoUrl: "#",
+      "Developed a multi-vendor laundry booking SaaS with automated order workflows, Paystack integration, pricing logic, and vendor/customer dashboards. Implemented queue-based order processing and caching for performance optimization.",
+    tech: ["Laravel", "PHP", "Vuejs", "MySQL","Docker"],
+    tags: ["SaaS", "Payments", "Full-Stack"],
+    status: "Completed",
+    liveUrl: "https://laundryroom.com.ng/client/landing-page",
   },
   {
     id: 3,
-    title: "Tikfetch",
+    title: "Vibesup EventHub — Ticketing & Event Management Backend",
     description:
-      "A zero-login TikTok downloader with smart caption parsing and near-zero cold starts; processed over 500K fetches.",
-    tags: ["TypeScript", "BetterAuth", "Redis", "PostgreSQL"],
-    additionalTags: ["DigitalOcean"],
-    liveUrl: "#",
+      "Engineered a scalable ticketing system with admin panel, secure payments, attendee management, and real-time event analytics. Focused on modular API design and optimized database queries for high concurrency.",
+    tech: ["Laravel", "PHP", "MySQL", "Redis", "Blade", "API Auth"],
+    tags: ["Backend", "Event Systems"],
+    status: "Completed",
+    liveUrl: "http://events.vibezsup.com/",
   },
   {
     id: 4,
-    title: "NBX Smart Battery Passport",
+    title: "SkinScan AI — Dermatology Diagnosis",
     description:
-      "A $500K+ blockchain platform for sustainability and logistics with privacy-preserving modules using ZKPs and secure enclaves.",
-    tags: ["Flutter", "Kotlin"],
-    badge: "Enterprise",
+      "Created an AI-powered diagnostic API using EfficientNet and Grad-CAM for skin-disease classification with explainable heatmaps. Deployed a Flask service exposing REST endpoints for integration into clinical tools.",
+    tech: ["Flask", "Python", "EfficientNet", "Grad-CAM", "Pillow", "API"],
+    tags: ["AI", "Healthcare", "Computer Vision"],
+    status: "Active",
+    githubUrl: "https://github.com/IniBuilds-git/SkinScan",
+    liveUrl: "https://drive.google.com/file/d/1VuKBQxwMBczVSUNL6xjwMhyMYcbUH43h/view?usp=sharing",
   },
-  {
-    id: 5,
-    title: "Eden Life Mobile App",
-    description:
-      "Re-architected household services app that cut onboarding time from 24 mins to 4 mins, resulting in a 3× increase in activation rates.",
-    tags: ["Flutter", "Kotlin", "Swift", "GetStream SDK"],
-    additionalTags: ["Real-time Chat"],
-    badge: "100k+ MAU",
-  },
-];
+]

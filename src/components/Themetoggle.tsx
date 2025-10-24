@@ -15,10 +15,10 @@ export default function Themetoggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle Theme"
-      className="fixed top-5 right-5 z-50 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
+      className="fixed top-8 right-8 z-50 text-xl hover:opacity-80 transition-opacity"
     >
-      <span className="text-xl" aria-hidden>
-        {isDark ? "☀︎" : "☾"}
+      <span aria-hidden>
+        {isDark ? "🌙" : "☀️"}
       </span>
     </button>
   );

@@ -3,9 +3,12 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  status: 'Active' | 'Completed' | 'In Progress';
+  additionalTags?: string[];
+  status?: 'Active' | 'Completed' | 'In Progress';
   githubUrl?: string;
   liveUrl?: string;
+  demoUrl?: string;
+  badge?: string;
 }
 
 export interface TechStackProps {

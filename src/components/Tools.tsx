@@ -5,66 +5,52 @@ export default function Tools() {
   const categories = [
     {
       title: "Languages",
-      items: [
-        { name: "TypeScript", icon: "devicon-typescript-plain" },
-        { name: "Python", icon: "devicon-python-plain" },
-        { name: "JavaScript", icon: "devicon-javascript-plain" },
-        { name: "PHP", icon: "devicon-php-plain" },
-        { name: "SQL", icon: "devicon-mysql-plain" },
-      ],
+      items: ["TypeScript", "Python", "JavaScript", "PHP", "SQL"],
     },
     {
       title: "Frameworks & Libraries",
-      items: [
-        { name: "Next.js", icon: "devicon-nextjs-original" },
-        { name: "NestJS", icon: "devicon-nestjs-plain" },
-        { name: "Laravel", icon: "devicon-laravel-plain" },
-        { name: "React", icon: "devicon-react-original" },
-        { name: "LangChain", icon: "devicon-python-plain" },
-      ],
+      items: ["Next.js", "NestJS", "Laravel", "React", "LangChain"],
     },
     {
-      title: "Cloud & Infra",
-      items: [
-        { name: "AWS", icon: "devicon-amazonwebservices-original" },
-        { name: "Vercel", icon: "devicon-vercel-original" },
-        { name: "Docker", icon: "devicon-docker-plain" },
-        { name: "NGINX", icon: "devicon-nginx-original" },
-        { name: "GitHub Actions", icon: "devicon-github-original" },
-      ],
+      title: "Cloud & Infrastructure",
+      items: ["AWS", "Vercel", "Docker", "NGINX", "GitHub Actions"],
     },
     {
       title: "AI / ML",
-      items: [
-        { name: "RAG", icon: "devicon-python-plain" },
-        { name: "FAISS", icon: "devicon-python-plain" },
-        { name: "OpenAI", icon: "devicon-openai-original" },
-        { name: "LangGraph", icon: "devicon-python-plain" },
-      ],
+      items: ["RAG", "FAISS", "OpenAI", "LangGraph", "Vector DBs"],
+    },
+    {
+      title: "Databases",
+      items: ["PostgreSQL", "MySQL", "Redis", "MongoDB"],
+    },
+    {
+      title: "Tools & Others",
+      items: ["Git", "Linux", "CI/CD", "Microservices", "REST APIs"],
     },
   ];
 
   return (
-    <section className="grid md:grid-cols-2 gap-16">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
       {categories.map((cat, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: index * 0.06 }}
+          transition={{ duration: 0.4, delay: index * 0.05 }}
+          className="bg-[#0d0d0d] border border-zinc-800/60 rounded-xl p-6 hover:border-zinc-700/60 transition-all"
         >
-          <h3 className="text-lg font-medium mb-3">{cat.title}</h3>
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-[15px] text-zinc-500 dark:text-zinc-400">
+          <h3 className="text-[15px] font-medium text-white mb-4">{cat.title}</h3>
+          <ul className="space-y-2.5">
             {cat.items.map((tool, i) => (
-              <span key={i} className="flex items-center gap-2 hover:text-zinc-200 transition">
-                <i className={`${tool.icon} text-[18px] opacity-80`}></i>
-                {tool.name}
-              </span>
+              <li key={i} className="text-[13px] text-zinc-400 flex items-center gap-2.5">
+                <span className="text-zinc-600">▸</span>
+                {tool}
+              </li>
             ))}
-          </div>
+          </ul>
         </motion.div>
       ))}
-    </section>
+    </div>
   );
 }

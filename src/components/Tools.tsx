@@ -11,23 +11,23 @@ export default function Tools() {
     <Section id="tools">
       <Container>
         <AnimatedSection>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 dark:text-gray-100">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 dark:text-gray-1000">
             Tools & Technologies
           </h2>
         </AnimatedSection>
 
-        <div className="space-y-16">
+        <div className="space-y-10">
           {TOOL_GROUPS.map((group, groupIndex) => (
             <AnimatedSection key={group.category} delay={groupIndex * 0.1}>
               <div className="mb-4">
-                <span className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-400 font-semibold">
+                <span className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-1000 font-semibold">
                   {group.category}
                 </span>
               </div>
 
               <div className="flex flex-wrap gap-6">
                 {group.items.map(tool => (
-                  <div key={tool.name} className="flex items-center gap-2 text-gray-900 dark:text-gray-200">
+                  <div key={tool.name} className="flex items-center gap-2 text-gray-900 dark:text-gray-1000">
                     <Icon icon={tool.icon} width="24" />
                     <span className="text-sm font-medium">{tool.name}</span>
                   </div>

@@ -7,7 +7,7 @@ import { Themetoggle } from "./Themetoggle";
 
 export default function Hero() {
   return (
-    <Section className="min-h-screen flex items-center relative">
+    <Section className="min-h-[80vh] flex items-center relative">
       <Container>
         <div className="absolute top-6 right-6">
           <Themetoggle />
@@ -43,7 +43,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-gray-500 dark:text-gray-1000 mb-12"
+            className="text-lg text-gray-500 dark:text-gray-1000 mb-8"
           >
             Currently building{" "}
             <span className="font-semibold text-gray-800 dark:text-gray-1000">CarRecovery</span> and{" "}

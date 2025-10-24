@@ -27,7 +27,7 @@ export default function Tabs() {
   }
 
   return (
-    <Section id="work" className="min-h-screen">
+    <Section id="work" className="min-h-screen pt-8 pb-20 lg:pb-32"> 
       <Container>
         {/* Tab Navigation */}
         <motion.div

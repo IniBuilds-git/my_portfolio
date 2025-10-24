@@ -17,10 +17,10 @@ export default function Experience() {
             {/* Header with role and period */}
             <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-1000 mb-2">
                   {experience.role}
                 </h3>
-                <p className="text-lg text-gray-700 dark:text-gray-400">
+                <p className="text-lg text-gray-700 dark:text-gray-1000">
                   {experience.company} • {experience.period}
                 </p>
               </div>
@@ -32,7 +32,7 @@ export default function Experience() {
             </div>
 
             {/* Description */}
-            <p className="text-gray-700 dark:text-gray-400 text-lg mb-6 leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-1000 text-lg mb-6 leading-relaxed">
               {experience.description}
             </p>
 
@@ -43,7 +43,7 @@ export default function Experience() {
                   key={techIndex}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.15 }}
-                  className="px-3 py-1 bg-gray-900 dark:bg-gray-800 border border-gray-900 dark:border-gray-700 text-white dark:text-gray-300 rounded-full text-sm font-medium"
+                  className="px-3 py-1 bg-gray-900 dark:bg-gray-800 border border-gray-900 dark:border-gray-700 text-white dark:text-gray-1000 rounded-full text-sm font-medium"
                 >
                   {tech}
                 </motion.span>
@@ -53,12 +53,12 @@ export default function Experience() {
             {/* Achievements */}
             {experience.achievements && experience.achievements.length > 0 && (
               <div className="mt-6">
-                <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-1000 mb-3">
                   Key Achievements:
                 </h4>
                 <ul className="space-y-2">
                   {experience.achievements.map((achievement, achievementIndex) => (
-                    <li key={achievementIndex} className="flex items-start space-x-2 text-gray-700 dark:text-gray-400">
+                    <li key={achievementIndex} className="flex items-start space-x-2 text-gray-700 dark:text-gray-1000">
                       <span className="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-600 rounded-full mt-2 flex-shrink-0"></span>
                       <span>{achievement}</span>
                     </li>

@@ -22,7 +22,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row justify-between items-center"
         >
-          <div className="text-gray-600 dark:text-gray-400 mb-4 md:mb-0">
+          <div className="text-gray-600 dark:text-gray-1000 mb-4 md:mb-0">
             © {currentYear} inioluwa.com
           </div>
           <div className="flex space-x-6">
@@ -36,7 +36,7 @@ export default function Footer() {
                 href={item.url}
                 target={item.name !== 'Email' ? '_blank' : undefined}
                 rel={item.name !== 'Email' ? 'noopener noreferrer' : undefined}
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
+                className="text-gray-600 dark:text-gray-1000 hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
               >
                 {item.name}
               </motion.a>

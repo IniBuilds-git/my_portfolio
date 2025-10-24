@@ -8,9 +8,10 @@ export default function Experience() {
   return (
     <div className="space-y-12">
       {experiences.map((experience, index) => (
-        <AnimatedSection key={experience.id} delay={index * 0.1}>
+        <AnimatedSection key={experience.id} delay={0}>
           <motion.div
             whileHover={{ y: -2 }}
+            transition={{ duration: 0.2 }}
             className="border-t border-gray-200 dark:border-gray-800 pt-12 first:border-t-0 first:pt-0"
           >
             {/* Header with role and period */}
@@ -41,6 +42,7 @@ export default function Experience() {
                 <motion.span
                   key={techIndex}
                   whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.15 }}
                   className="px-3 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
                 >
                   {tech}

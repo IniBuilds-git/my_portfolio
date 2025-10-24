@@ -13,7 +13,7 @@ export default function Card({ children, className = '', hover = true }: CardPro
   return (
     <motion.div
       whileHover={hover ? { y: -4, transition: { duration: 0.2 } } : {}}
-      className={`bg-white rounded-xl border border-gray-200 p-6 ${hover ? 'hover:shadow-lg' : ''} transition-all duration-300 ${className}`}
+      className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 ${hover ? 'hover:shadow-lg dark:hover:shadow-gray-900/50' : ''} transition-all duration-300 ${className}`}
     >
       {children}
     </motion.div>

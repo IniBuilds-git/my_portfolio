@@ -8,9 +8,10 @@ export default function Projects() {
   return (
     <div className="space-y-20">
       {projects.map((project, index) => (
-        <AnimatedSection key={project.id} delay={index * 0.1}>
+        <AnimatedSection key={project.id} delay={0}>
           <motion.div
             whileHover={{ y: -5 }}
+            transition={{ duration: 0.2 }}
             className="border-t border-gray-200 dark:border-gray-800 pt-12 first:border-t-0 first:pt-0"
           >
             {/* Project Header */}
@@ -23,6 +24,7 @@ export default function Projects() {
                   <motion.span
                     key={tagIndex}
                     whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.15 }}
                     className="px-3 py-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium"
                   >
                     {tag}
@@ -58,6 +60,7 @@ export default function Projects() {
                     href={project.githubUrl}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
                     className="px-4 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-lg text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -70,6 +73,7 @@ export default function Projects() {
                     href={project.liveUrl}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
                     className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"

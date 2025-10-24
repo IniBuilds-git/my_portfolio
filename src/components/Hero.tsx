@@ -23,7 +23,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-gray-900 dark:text-gray-100"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-gray-900 dark:text-gray-1200"
           >
             Hello, I'm <span className="gradient-text">Inioluwa</span>
           </motion.h1>
@@ -32,7 +32,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4 leading-relaxed"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-1000 mb-4 leading-relaxed"
           >
             Software Engineer with 4+ years of experience designing APIs,
             architecting secure data systems, and deploying high-availability
@@ -43,11 +43,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-gray-500 dark:text-gray-400 mb-12"
+            className="text-lg text-gray-500 dark:text-gray-1000 mb-12"
           >
             Currently building{" "}
-            <span className="font-semibold text-gray-800 dark:text-gray-200">CarRecovery</span> and{" "}
-            <span className="font-semibold text-gray-800 dark:text-gray-200">SME Customer Support AI Assistant</span>
+            <span className="font-semibold text-gray-800 dark:text-gray-1000">CarRecovery</span> and{" "}
+            <span className="font-semibold text-gray-800 dark:text-gray-1000">SME Customer Support AI Assistant</span>
           </motion.p>
 
           <motion.div

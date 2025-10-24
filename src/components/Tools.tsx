@@ -20,14 +20,14 @@ export default function Tools() {
           {TOOL_GROUPS.map((group, groupIndex) => (
             <AnimatedSection key={group.category} delay={groupIndex * 0.1}>
               <div className="mb-4">
-                <span className="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                <span className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-400 font-semibold">
                   {group.category}
                 </span>
               </div>
 
               <div className="flex flex-wrap gap-6">
                 {group.items.map(tool => (
-                  <div key={tool.name} className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
+                  <div key={tool.name} className="flex items-center gap-2 text-gray-900 dark:text-gray-200">
                     <Icon icon={tool.icon} width="24" />
                     <span className="text-sm font-medium">{tool.name}</span>
                   </div>

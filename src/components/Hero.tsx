@@ -34,7 +34,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-1000 mb-4 leading-relaxed"
           >
-            Software Engineer with 4+ years of experience designing APIs,
+            Software Engineer with 3+ years of experience designing APIs,
             architecting secure data systems, and deploying high-availability
             infrastructure — and an active AI Builder.
           </motion.p>

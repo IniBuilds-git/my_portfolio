@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata = {
-  title: 'Inioluwa - Software Engineer & AI Builder',
-  description: 'Software Engineer with 4+ years of experience designing APIs,architecting secure data systems, and deploying high-availability infrastructure — and an active AI Builder.',
+  title: 'Inioluwa - Software Engineer',
+  description: 'Software Engineer with 3+ years of experience designing APIs,architecting secure data systems, and deploying high-availability infrastructure — and an active AI Builder.',
 }
 
 interface RootLayoutProps {

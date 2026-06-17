@@ -1,67 +1,129 @@
 @import "tailwindcss";
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 10% 3.9%;
-  --radius: 0.5rem;
+  /* Surfaces — dark, rython.dev inspired */
+  --background: 0 0% 4%;            /* near-black page */
+  --foreground: 0 0% 98%;          /* near-white ink */
+  --card: 0 0% 7%;                 /* slightly lighter card */
+  --card-foreground: 0 0% 98%;
+
+  /* Muted greys */
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 64%;    /* muted grey body text */
+  --subtle: 0 0% 14%;              /* chip / pill background */
+
+  /* Accent — cyan / teal */
+  --primary: 168 84% 52%;          /* teal-cyan */
+  --primary-foreground: 0 0% 4%;
+  --primary-soft: 168 60% 12%;     /* dark teal wash */
+
+  /* Lines & rings */
+  --border: 0 0% 16%;
+  --ring: 168 84% 52%;
+
+  --radius: 1rem;
+
+  /* Dotted background dot color */
+  --dot: 0 0% 100%;
+  --dot-opacity: 0.06;
+
+  /* Card shadow tint (dark by default) */
+  --shadow-color: 0 0% 0%;
+  --shadow-strong: 0.4;
+  --shadow-soft: 0.35;
 }
 
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 0 0% 98%;
+/* Light theme — applied when <html> has the `light` class */
+.light {
+  --background: 0 0% 100%;          /* white page */
+  --foreground: 222 22% 11%;        /* near-black ink */
+  --card: 0 0% 100%;                /* white card */
+  --card-foreground: 222 22% 11%;
+
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 40%;   /* grey body text */
+  --subtle: 220 14% 94%;            /* chip / pill background */
+
+  --primary: 168 76% 38%;           /* deeper teal for contrast on white */
+  --primary-foreground: 0 0% 100%;
+  --primary-soft: 168 70% 92%;      /* pale teal wash */
+
+  --border: 220 13% 88%;
+  --ring: 168 76% 38%;
+
+  --dot: 222 22% 11%;
+  --dot-opacity: 0.05;
+
+  --shadow-color: 220 20% 50%;
+  --shadow-strong: 0.12;
+  --shadow-soft: 0.10;
 }
 
 * {
   border-color: hsl(var(--border));
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* offset for sticky nav */
+}
+
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+
+  /* dotted grid pattern like rython.dev */
+  background-image: radial-gradient(
+    hsl(var(--dot) / var(--dot-opacity)) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  background-position: -11px -11px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Card shell with soft glow */
+.card-soft {
+  background-color: hsl(var(--card) / 0.7);
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / var(--shadow-strong)),
+    0 12px 40px hsl(var(--shadow-color) / var(--shadow-soft));
+  backdrop-filter: blur(8px);
 }
 
-.glow {
-  filter: drop-shadow(0 0 2em hsl(var(--primary) / 0.4));
+.card-soft-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.card-soft-hover:hover {
+  border-color: hsl(var(--primary) / 0.45);
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / var(--shadow-strong)),
+    0 20px 60px hsl(var(--primary) / 0.10);
+}
+
+/* Hero glow card — stronger teal ring + glow */
+.glow-card {
+  position: relative;
+  background-color: hsl(var(--card) / 0.5);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 0 0 1px hsl(var(--primary) / 0.08),
+    0 0 60px hsl(var(--primary) / 0.12),
+    inset 0 0 40px hsl(var(--primary) / 0.04);
+  backdrop-filter: blur(10px);
+}
+
+/* Subtle pill / tag */
+.pill {
+  background-color: hsl(var(--subtle));
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
+}
+
+.accent-text {
+  color: hsl(var(--primary));
 }

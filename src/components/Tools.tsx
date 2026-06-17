@@ -1,42 +1,37 @@
-"use client"
+"use client";
 
-import { Icon } from "@iconify/react"
-import Container from "./ui/Container"
-import Section from "./ui/Section"
-import AnimatedSection from "./ui/AnimatedSection"
-import { tools as TOOL_GROUPS } from "@/data/tools" 
+import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { tools as SKILL_GROUPS } from "@/data/tools";
 
 export default function Tools() {
   return (
-    <Section id="tools">
-      <Container>
-        <AnimatedSection>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900 dark:text-gray-1000">
-            Tools & Technologies
-          </h2>
-        </AnimatedSection>
-
-        <div className="space-y-10">
-          {TOOL_GROUPS.map((group, groupIndex) => (
-            <AnimatedSection key={group.category} delay={groupIndex * 0.1}>
-              <div className="mb-4">
-                <span className="text-xs uppercase tracking-widest text-gray-600 dark:text-gray-1000 font-semibold">
-                  {group.category}
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-6">
-                {group.items.map(tool => (
-                  <div key={tool.name} className="flex items-center gap-2 text-gray-900 dark:text-gray-1000">
-                    <Icon icon={tool.icon} width="24" />
-                    <span className="text-sm font-medium">{tool.name}</span>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </Container>
-    </Section>
-  )
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {SKILL_GROUPS.map((group, i) => (
+        <motion.div
+          key={group.category}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.35, delay: (i % 3) * 0.06 }}
+          className="card-soft card-soft-hover p-5"
+        >
+          <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-[hsl(var(--muted-foreground))]">
+            {group.category}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {group.items.map((tool) => (
+              <span
+                key={tool.name}
+                className="inline-flex items-center gap-2 rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--background))] px-3 py-1.5 text-sm text-[hsl(var(--foreground))]"
+              >
+                <Icon icon={tool.icon} width="18" height="18" />
+                {tool.name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
 }

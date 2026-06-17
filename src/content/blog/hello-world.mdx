@@ -1,0 +1,36 @@
+---
+title: "Hello, world — and what I'll write about here"
+date: "2026-06-17"
+excerpt: "A quick intro to this blog: backend architecture, applied AI, and the engineering decisions behind the systems I build."
+tags: ["Meta", "Engineering"]
+draft: false
+---
+
+Welcome to the blog. This is where I'll write about the things I spend my days on — backend architecture, applied AI, and the trade-offs behind real production systems.
+
+## What to expect
+
+I tend to write about decisions, not just outcomes. A few themes I'll keep coming back to:
+
+- **Backend design** — multi-tenant platforms, RESTful APIs, and queue-driven workflows.
+- **Applied AI** — shipping LLM-powered features and RAG pipelines that actually hold up in production.
+- **Infrastructure** — the CI/CD and cloud setup that keeps it all reliable.
+
+## A quick code example
+
+Posts support syntax-highlighted code blocks, so I can show real snippets:
+
+```ts
+async function enqueueJob(job: Job): Promise<void> {
+  await queue.add(job.name, job.payload, {
+    attempts: 3,
+    backoff: { type: "exponential", delay: 2000 },
+  });
+}
+```
+
+And inline code like `redis.set(key, value)` works too.
+
+> The best systems are the ones you can reason about at 3am during an incident.
+
+That's it for now. More soon.

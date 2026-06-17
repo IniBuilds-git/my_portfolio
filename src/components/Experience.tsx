@@ -1,74 +1,138 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import AnimatedSection from './ui/AnimatedSection'
-import { experiences } from '@/data/experience'
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Briefcase, GraduationCap, FlaskConical, ExternalLink } from "lucide-react";
+import { experiences } from "@/data/experience";
+import type { ExperienceCategory } from "@/types";
+
+const categories: { id: ExperienceCategory; label: string; Icon: typeof Briefcase }[] = [
+  { id: "Experience", label: "Experience", Icon: Briefcase },
+  { id: "Education", label: "Education", Icon: GraduationCap },
+  { id: "Research", label: "Research", Icon: FlaskConical },
+];
 
 export default function Experience() {
+  const [active, setActive] = useState<ExperienceCategory>("Experience");
+  const items = experiences.filter((e) => e.category === active);
+
   return (
-    <div className="space-y-12">
-      {experiences.map((experience, index) => (
-        <AnimatedSection key={experience.id} delay={0}>
-          <motion.div
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.2 }}
-            className="border-t border-gray-300 dark:border-gray-700 pt-12 first:border-t-0 first:pt-0"
-          >
-            {/* Header with role and period */}
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-              <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-1000 mb-2">
-                  {experience.role}
-                </h3>
-                <p className="text-lg text-gray-700 dark:text-gray-1000">
-                  {experience.company} • {experience.period}
-                </p>
-              </div>
-              <div className="mt-2 md:mt-0">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-300 text-sm font-medium">
-                  {experience.year}
-                </span>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-700 dark:text-gray-1000 text-lg mb-6 leading-relaxed">
-              {experience.description}
-            </p>
-
-            {/* Technologies */}
-            <div className="flex flex-wrap gap-2">
-              {experience.technologies.map((tech, techIndex) => (
+    <div>
+      {/* Category selector — full-width segmented (rython style) */}
+      <div className="mb-10 grid grid-cols-3 rounded-xl border border-[hsl(var(--border))] bg-[hsl(var(--card)/0.5)] p-1">
+        {categories.map(({ id, label, Icon }) => {
+          const isActive = active === id;
+          return (
+            <button
+              key={id}
+              onClick={() => setActive(id)}
+              className={`relative flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                isActive
+                  ? "text-[hsl(var(--foreground))]"
+                  : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]"
+              }`}
+            >
+              {isActive && (
                 <motion.span
-                  key={techIndex}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.15 }}
-                  className="px-3 py-1 bg-gray-900 dark:bg-gray-800 border border-gray-900 dark:border-gray-700 text-white dark:text-gray-1000 rounded-full text-sm font-medium"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
+                  layoutId="expCategory"
+                  className="absolute inset-0 rounded-lg bg-[hsl(var(--muted))]"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <Icon className="h-4 w-4" />
+                {label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
 
-            {/* Achievements */}
-            {experience.achievements && experience.achievements.length > 0 && (
-              <div className="mt-6">
-                <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-1000 mb-3">
-                  Key Achievements:
-                </h4>
-                <ul className="space-y-2">
-                  {experience.achievements.map((achievement, achievementIndex) => (
-                    <li key={achievementIndex} className="flex items-start space-x-2 text-gray-700 dark:text-gray-1000">
-                      <span className="w-1.5 h-1.5 bg-gray-600 dark:bg-gray-600 rounded-full mt-2 flex-shrink-0"></span>
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
+      {/* Timeline */}
+      <div className="relative mx-auto max-w-3xl">
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[hsl(var(--border))] sm:left-[9px]" />
+
+        <div className="space-y-5">
+          {items.map((exp, i) => (
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: i * 0.06 }}
+              className="relative pl-8 sm:pl-10"
+            >
+              {/* dot */}
+              <span className="absolute left-0 top-5 h-3.5 w-3.5 rounded-full border-2 border-[hsl(var(--primary))] bg-[hsl(var(--background))] sm:h-[18px] sm:w-[18px]" />
+
+              <div className="card-soft card-soft-hover p-5">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold leading-snug text-[hsl(var(--foreground))]">
+                      {exp.role}
+                    </h3>
+                    <p className="mt-0.5 text-sm text-[hsl(var(--muted-foreground))]">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 flex-wrap items-center gap-2">
+                    <span className="rounded-full pill px-2.5 py-0.5 text-xs font-medium">
+                      {exp.period}
+                    </span>
+                    {exp.year && (
+                      <span className="rounded-full bg-[hsl(var(--primary-soft))] px-2.5 py-0.5 text-xs font-medium text-[hsl(var(--primary))]">
+                        {exp.year}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <p className="mt-3 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                  {exp.description}
+                </p>
+
+                {exp.technologies.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md bg-[hsl(var(--muted))] px-2 py-1 font-mono text-xs text-[hsl(var(--muted-foreground))]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {exp.achievements && exp.achievements.length > 0 && (
+                  <ul className="mt-4 space-y-1.5">
+                    {exp.achievements.map((a, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2 text-sm text-[hsl(var(--muted-foreground))]"
+                      >
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[hsl(var(--primary))]" />
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {exp.link && (
+                  <a
+                    href={exp.link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--primary))] transition-colors hover:text-[hsl(var(--foreground))]"
+                  >
+                    {exp.link.label}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
               </div>
-            )}
-          </motion.div>
-        </AnimatedSection>
-      ))}
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
+  );
 }

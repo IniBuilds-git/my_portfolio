@@ -1,13 +1,17 @@
+import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
-import Tabs from '@/components/Tabs' // NEW: Replaced individual components
+import Tabs from '@/components/Tabs'
 import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <Tabs /> 
-      <Footer />
-    </main>
+    <>
+      <Nav />
+      <main className="min-h-screen">
+        <Hero />
+        <Tabs />
+        <Footer />
+      </main>
+    </>
   )
 }

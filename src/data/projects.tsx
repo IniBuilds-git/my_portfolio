@@ -3,13 +3,14 @@ import { Project } from '@/types'
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Coinlybus — Fintech Wallet Infrastructure",
+    title: "SpinRequest — Live DJ Song-Request Marketplace",
     description:
-      "Built a secure multi-wallet transaction system with real-time ledgering, automated reconciliation, and fault-tolerant payment processing deployed on AWS with PM2 and Docker. Designed the backend for scalability, monitoring, and continuous delivery.",
-    tech: ["NestJS", "Prisma", "PostgreSQL", "Redis", "AWS", "Docker"],
-    tags: ["API", "Cloud Infrastructure"],
+      "A two-sided marketplace connecting audiences with DJs at live events. Features real-time song requests, dynamic pricing, automated payouts, and a comprehensive FilamentPHP admin panel with role-based access control.",
+    tech: ["Laravel", "FilamentPHP", "MySQL", "NuxtJS", "Queue Workers"],
+    tags: ["SaaS", "Marketplace", "Payments"],
     status: "Active",
-    githubUrl: "",
+    liveUrl: "https://spinrequest.com",
+    image: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fspinrequest.com?w=1200&h=750",
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     tags: ["SaaS", "Payments", "Full-Stack"],
     status: "Completed",
     liveUrl: "https://laundryroom.com.ng/client/landing-page",
+    image: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Flaundryroom.com.ng%2Fclient%2Flanding-page?w=1200&h=750",
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const projects: Project[] = [
     tags: ["Backend", "Event Systems"],
     status: "Completed",
     liveUrl: "http://events.vibezsup.com/",
+    image: "https://s.wordpress.com/mshots/v1/http%3A%2F%2Fevents.vibezsup.com%2F?w=1200&h=750",
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ export const projects: Project[] = [
     tags: ["AI", "Healthcare", "Computer Vision"],
     status: "Active",
     githubUrl: "https://github.com/IniBuilds-git/SkinScan",
-    liveUrl: "https://drive.google.com/file/d/1VuKBQxwMBczVSUNL6xjwMhyMYcbUH43h/view?usp=sharing",
+    // Demo is a Google Drive video (not an embeddable live site), so it's not
+    // set as liveUrl — that would try to iframe-embed and render blank.
   },
 ]

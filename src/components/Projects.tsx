@@ -18,6 +18,7 @@ function Screenshot({ project }: { project: Project }) {
 
       {project.liveUrl ? (
         <div className="relative h-[calc(100%-2.75rem)] w-full overflow-hidden bg-white">
+          {}
           <iframe
             src={project.liveUrl}
             title={`${label} live preview`}
@@ -27,8 +28,8 @@ function Screenshot({ project }: { project: Project }) {
             aria-hidden
             className="pointer-events-none absolute left-0 top-0 origin-top-left border-0"
             style={{
-              width: "1280px",
-              height: "800px",
+              width: "200%",
+              height: "200%",
               transform: "scale(0.5)",
             }}
           />

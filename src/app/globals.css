@@ -66,6 +66,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem; /* offset for sticky nav */
+  overflow-x: hidden; 
 }
 
 body {

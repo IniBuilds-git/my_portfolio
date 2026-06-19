@@ -1,0 +1,128 @@
+---
+title: "Design Patterns, in Practice"
+date: "2026-06-19"
+excerpt: "What design patterns actually are, why they exist, and three you'll reach for again and again: Observer, Decorator, and State, with real TypeScript."
+tags: ["Engineering", "Design Patterns", "TypeScript"]
+draft: false
+---
+
+How many times have you had design déjà-vu, that feeling that you've solved this exact problem before, but you can't quite remember where or how?
+
+That feeling is the whole reason design patterns exist.
+
+One thing expert designers know not to do is solve every problem from first principles. Instead, they reuse solutions that have worked before. When they find a good one, they use it again and again, and that hard-won reuse is a big part of what makes them experts. Eventually, when the same solution keeps showing up across projects, someone puts a name to it and writes it down. That's how a pattern gets _discovered_, not invented.
+
+## What a pattern actually is
+
+A pattern is a description of communicating objects and classes, customized to solve a general design problem in a particular context. It isn't a library you install or a snippet you paste. It's a shape your code can take.
+
+Every well-described pattern has four essential elements:
+
+- **Name**: a handle you can reason and communicate with. "Let's make it an Observer" carries a lot of meaning in four words.
+- **Problem**: when to apply it, and the conditions that make it a good fit.
+- **Solution**: the arrangement of classes and objects, their responsibilities, and how they collaborate.
+- **Consequences**: the trade-offs. Every pattern buys you something and costs you something else.
+
+## Three families
+
+The classic patterns sort into three purposes:
+
+- **Creational**: concern the process of object creation.
+- **Structural**: deal with the composition of classes and objects.
+- **Behavioral**: characterize how objects interact and distribute responsibility.
+
+A couple of principles run underneath all of them. Objects are known only through their **interfaces**, so there's no way to ask an object to do anything except through what it exposes. And an object's internal state is **encapsulated**: requests are the only way to make it act, operations are the only way to change its data, and its representation stays invisible from the outside. An *abstract class* leans into this; its main job is to define a common interface for its subclasses.
+
+Let's make three of these concrete.
+
+## Observer (behavioral)
+
+**Problem:** one object changes, and an open-ended set of others need to react, without the subject knowing who they are.
+
+```ts
+type Listener<T> = (value: T) => void;
+
+class Subject<T> {
+  private listeners = new Set<Listener<T>>();
+
+  subscribe(listener: Listener<T>): () => void {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener); // unsubscribe
+  }
+
+  notify(value: T): void {
+    for (const listener of this.listeners) listener(value);
+  }
+}
+
+const price = new Subject<number>();
+const unsub = price.subscribe((p) => console.log(`Price is now ${p}`));
+price.notify(42); // "Price is now 42"
+unsub();
+```
+
+The subject distributes responsibility to its observers and stays ignorant of them. **Consequence:** loose coupling, but the update order is undefined and a chain of notifications can be hard to trace at 3am.
+
+## Decorator (structural)
+
+**Problem:** add responsibilities to an object dynamically, without subclassing for every combination.
+
+```ts
+interface Coffee {
+  cost(): number;
+  description(): string;
+}
+
+class Espresso implements Coffee {
+  cost() { return 2.0; }
+  description() { return "espresso"; }
+}
+
+// A decorator wraps a Coffee and *is* a Coffee.
+class WithMilk implements Coffee {
+  constructor(private inner: Coffee) {}
+  cost() { return this.inner.cost() + 0.5; }
+  description() { return `${this.inner.description()} + milk`; }
+}
+
+const order = new WithMilk(new Espresso());
+console.log(order.description(), order.cost()); // "espresso + milk" 2.5
+```
+
+Because the decorator shares `Coffee`'s interface, callers can't tell the wrapped object from the bare one. That's the encapsulation principle paying off. **Consequence:** you compose behavior freely, but you can end up with many small objects.
+
+## State (behavioral)
+
+**Problem:** an object's behavior depends on its state, and you'd rather not write a sprawling `switch` everywhere.
+
+```ts
+interface DoorState {
+  open(door: Door): void;
+  close(door: Door): void;
+}
+
+class Closed implements DoorState {
+  open(door: Door) { door.setState(new Open()); }
+  close() { /* already closed */ }
+}
+
+class Open implements DoorState {
+  open() { /* already open */ }
+  close(door: Door) { door.setState(new Closed()); }
+}
+
+class Door {
+  private state: DoorState = new Closed();
+  setState(state: DoorState) { this.state = state; }
+  open() { this.state.open(this); }
+  close() { this.state.close(this); }
+}
+```
+
+Each state is its own object that knows only how to transition. **Consequence:** the conditional logic disappears into the type system, at the cost of more classes.
+
+## The takeaway
+
+Patterns aren't rules to memorize. They're names for shapes you'll rediscover anyway. The value is in the shared vocabulary and in already knowing the consequences before you commit. Next time you get that déjà-vu, you'll have a name ready.
+
+> The best abstraction is the one you can explain to a teammate in a single sentence.
